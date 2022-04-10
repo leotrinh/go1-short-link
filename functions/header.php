@@ -1,5 +1,5 @@
 <?php
-$pageName = $pageName ?? "";
+$pageName = $pageName ?? "Home";
 $pageTitle =  $pageName . ' - ' . $info['name'];
 $pageDescription = $pageDescription ?? "GO1 - URL Shorten, rút gọn link";
 ?>
