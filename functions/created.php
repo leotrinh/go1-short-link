@@ -3,8 +3,6 @@
 
 <head>
     <?php
-    include "functions/database.php";
-
     $data = $db->query("SELECT * FROM settings");
     $info = $db->fetch_array($data);
     $pageName = "URL Created";

@@ -1,20 +1,20 @@
-
 <!DOCTYPE html>
 <html class="full" lang="en">
 
-    <head>
+<head>
     <?php
     $pageName = "Redirecting...";
     include "functions/header.php";
     ?>
-    </head>
+</head>
 
-    <body>
+<body>
 
 
-    </body>
+</body>
 
 </html>
 <?php
-header("Location:".$url, true, 301);
-exit();?>
+header("Location:" . $url, true, 301);
+    exit();
+?>
