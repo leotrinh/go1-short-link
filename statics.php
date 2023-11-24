@@ -14,7 +14,7 @@ $ads_info = $db->fetch_array($ads);
 
 <head>
     <?php
-    $pageName = "Statics";
+    $pageName = "Thống kê rút link";
     include "functions/header.php";
     ?>
     <style>
@@ -46,12 +46,23 @@ $ads_info = $db->fetch_array($ads);
         </div>
     </div>
     <div class="container animated fadeIn">
+
         <div class="col-lg-8 col-lg-offset-2">
             <ul class="nav nav-tabs statics-tabs">
-                <li class="active"><a href="#new" data-toggle="tab">New</a></li>
-                <li class=""><a href="#pop" data-toggle="tab">Popular</a></li>
-                <li class=""><a href="#rec" data-toggle="tab">Recently Visited</a></li>
+                <li class="active"><a href="#new" data-toggle="tab">Mới nhất</a></li>
+                <li class=""><a href="#pop" data-toggle="tab">Click nhiều</a></li>
+                <li class=""><a href="#rec" data-toggle="tab">Vừa xem</a></li>
             </ul>
+            <div class="row search-box">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input id="urlbox" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
+                        <span class="input-group-btn">
+                            <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="submit">Tìm</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="new">
                     <div class="row" style="margin-top:-10px">
@@ -64,9 +75,9 @@ $ads_info = $db->fetch_array($ads);
                                 <thead>
                                     <tr>
                                         <th>URL</th>
-                                        <th>Link</th>
-                                        <th>Created</th>
-                                        <th>Stats</th>
+                                        <th>Short Link</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Thống kê</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -99,7 +110,7 @@ $ads_info = $db->fetch_array($ads);
                                             <td>
                                                 <a href="<?php echo $info['URL'] . '/stats.php?id=' . $row['link']; ?>" target="_blank">
                                                     <div class="fa fa-signal" style="height:100%;width:100%">
-                                                        Stats
+                                                        Xem
                                                     </div>
                                                 </a>
                                             </td>

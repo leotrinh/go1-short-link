@@ -3,6 +3,8 @@ session_start();
 if (!$_SESSION["valid_user"]) {
     Header("Location: login.php");
 }
+?>
+<?php
 include "functions/time.php";
 include "../functions/database.php";
 
@@ -73,14 +75,11 @@ if (!$retval) {
 
 $row = $db->fetch_array($retval);
 $rec_count = $row['count(id)'];
-
-if (isset($_GET{'page'})) { //get the current page
-    $page = $_GET{'page'} + 1;
+ $page = 1;
+ $offset = $rec_limit;
+if (isset($_GET['page'])) { //get the current page
+    $page = $_GET['page'] + 1;
     $offset = $rec_limit * $page;
-} else {
-    // show first set of results
-    $page = 0;
-    $offset = 0;
 }
 $left_rec = $rec_count - ($page * $rec_limit);
 //we set the specific query to display in the table

@@ -19,7 +19,6 @@ $_SESSION["allow"] = true;
 
 <head>
     <?php
-    $pageName = "";
     include "functions/header.php";
     ?>
 </head>

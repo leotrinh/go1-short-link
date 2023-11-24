@@ -286,17 +286,18 @@ if ($info["logo_type"] == 0) {
                     </div>
                     <div class="tab-pane fade" id="custom-css">
                         <form role="form" action="?op=css" method="post" >
+                    
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label" for="css">Custom CSS</label>
-                                    <div class="col-md-9">
-                                        <textarea style="font-family:monospace" class="form-control" id="css" name="css" rows="5"><?php echo $info['cstm-style']; ?></textarea>
+                                    <label class="col-md-2 control-label" for="css">Custom CSS</label>
+                                    <div class="col-md-10">
+                                        <textarea style="font-family:monospace" class="form-control" id="css" name="css" rows="35"><?php echo $info['cstm-style']; ?></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                                  <div class="row">
                                 <div class="col-md-12 text-right" style="margin-top:25px">
-                                    <button type="submit" class="btn btn-info btn-lg">Submit</button>
+                                    <button type="submit" class="btn btn-info btn-lg">Update</button>
                                 </div>					
                             </div>	
                             <div style="margin-top:25px"> </div>	
