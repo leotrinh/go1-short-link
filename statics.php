@@ -242,7 +242,7 @@ $ads_info = $db->fetch_array($ads);
                     <div class="row search-box">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <input id="search-field" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
+                                <input id="search-field" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Bạn cần tìm gì?" type="text" data-validation-error-msg=" ">
                                 <span class="input-group-btn">
                                     <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="btnFind">Tìm</button>
                                 </span>
