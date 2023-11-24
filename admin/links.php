@@ -42,7 +42,16 @@ include "functions/menu.php"
 
         <div id="services" class="services-section">
             <div class="container">
-
+            <div class="row search-box">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <input id="urlbox" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
+                        <span class="input-group-btn">
+                            <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="submit">Tìm</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">

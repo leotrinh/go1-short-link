@@ -52,17 +52,9 @@ $ads_info = $db->fetch_array($ads);
                 <li class="active"><a href="#new" data-toggle="tab">Mới nhất</a></li>
                 <li class=""><a href="#pop" data-toggle="tab">Click nhiều</a></li>
                 <li class=""><a href="#rec" data-toggle="tab">Vừa xem</a></li>
+                <li class=""><a href="#find" data-toggle="tab">Tìm link</a></li>
             </ul>
-            <div class="row search-box">
-                <div class="col-12">
-                    <div class="input-group">
-                        <input id="urlbox" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
-                        <span class="input-group-btn">
-                            <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="submit">Tìm</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
+
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="new">
                     <div class="row" style="margin-top:-10px">
@@ -246,6 +238,52 @@ $ads_info = $db->fetch_array($ads);
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="find">
+                    <div class="row search-box">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <input id="search-value" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="btnFind">Tìm</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <label id="lblError" for="" class="text-danger">Không có dữ liệu</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="tblFindResult" class="statics table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>URL</th>
+                                        <th>Link</th>
+                                        <th>Created</th>
+                                        <th>Stats</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="record">
+                                        <td>
+                                            <a href="#" id="urlLink" target="_blank"></a>
+                                        </td>
+                                        <td>
+                                            <a href="#" id="link"></a>
+                                        </td>
+                                        <td id="date"></td>
+                                        <td>
+                                            <a href="#" id="statsLink" target="_blank">
+                                                <div class="fa fa-signal"></div>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -254,6 +292,57 @@ $ads_info = $db->fetch_array($ads);
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script>
+        const API_FIND_ENDPOINT = `${window.location.href}/api-find.php?search=`;
+        const oResultTable = $("#tblFindResult");
+        const oLblError = $("#lblError");
+        const LEO_KIT = {
+            init: function() {
+                document.getElementById('btnFind').addEventListener('click', () => LEO_KIT.find());
+                oResultTable.hide();
+                oLblError.hide();
+            },
+            find: function() {
+                const search = $("#search-value").val();
+                console.log("Search:", search);
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', './api-find.php?search=' + search, true);
+                xhr.onload = function() {
+                    console.log("Load Json Status", xhr.status);
+                    if (xhr.status === 200) {
+                        try {
+                            const resData = JSON.parse(xhr.responseText);
+                            LEO_KIT.updateData(resData);
+                        } catch (err) {
+                            alert("Can not load JSON content! Please contact Admin");
+                            console.log("Parse JSON failed: ", err);
+                        }
+                    }
+                };
+                xhr.send();
+            },
+            updateData: function(jsonData) {
+
+                if (!jsonData.url) {
+                    oLblError.show()
+                    oResultTable.hide();
+                    return;
+                }
+                oLblError.hide()
+                oResultTable.show();
+                document.getElementById("urlLink").href = jsonData.url;
+                document.getElementById("urlLink").textContent = jsonData.url;
+
+                document.getElementById("link").href = "https://go1.day/" + jsonData.link;
+                document.getElementById("link").textContent = jsonData.link;
+
+                document.getElementById("date").textContent = jsonData.date;
+
+                document.getElementById("statsLink").href = "https://go1.day/stats.php?id=" + jsonData.link;
+            }
+        };
+        LEO_KIT.init();
+    </script>
 
 
 </body>
