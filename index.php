@@ -75,7 +75,7 @@ $_SESSION["allow"] = true;
             <div class="col-lg-4 text-center">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h2 class="newsize" style="font-weight:bolder;"> Total hits </h2>
+                        <h2 class="newsize" style="font-weight:bolder;"> Tổng số lượt truy cập </h2>
                         <h2 class="newsize" style="letter-spacing:1px;"><?php echo $num_rows3; ?></h2>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ $_SESSION["allow"] = true;
             <div class="col-lg-4 text-center">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h2 class="newsize" style="font-weight:bolder;"> Total URLs </h2>
+                        <h2 class="newsize" style="font-weight:bolder;"> Tổng số Link </h2>
                         <h2 class="newsize" style="letter-spacing:1px;"><?php echo $num_rows1; ?></h2>
 
                     </div>
@@ -92,7 +92,7 @@ $_SESSION["allow"] = true;
             <div class="col-lg-4 text-center">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h2 class="newsize" style="font-weight:bolder;"> Today URLs </h2>
+                        <h2 class="newsize" style="font-weight:bolder;"> Link tạo hôm nay </h2>
                         <h2 class="newsize" style="letter-spacing:1px;"><?php echo $num_rows2; ?></h2>
 
                     </div>

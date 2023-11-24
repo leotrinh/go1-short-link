@@ -68,7 +68,7 @@ $ads_info = $db->fetch_array($ads);
                                     <tr>
                                         <th>URL</th>
                                         <th>Short Link</th>
-                                        <th>Ngày tạo</th>
+                                        <th>Thời gian tạo</th>
                                         <th>Thống kê</th>
                                     </tr>
                                 </thead>
@@ -128,8 +128,8 @@ $ads_info = $db->fetch_array($ads);
                                     <tr>
                                         <th>URL</th>
                                         <th>Link</th>
-                                        <th>Created</th>
-                                        <th>Stats</th>
+                                        <th>Thời gian tạo</th>
+                                        <th>Thống kê</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -188,8 +188,8 @@ $ads_info = $db->fetch_array($ads);
                                     <tr>
                                         <th>URL</th>
                                         <th>Link</th>
-                                        <th>Created</th>
-                                        <th>Stats</th>
+                                        <th>Thời gian tạo</th>
+                                        <th>Thống kê</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -259,8 +259,8 @@ $ads_info = $db->fetch_array($ads);
                                     <tr>
                                         <th>URL</th>
                                         <th>Link</th>
-                                        <th>Created</th>
-                                        <th>Stats</th>
+                                        <th>Thời gian tạo</th>
+                                        <th>Thống kê</th>
                                     </tr>
                                 </thead>
                                 <tbody>
