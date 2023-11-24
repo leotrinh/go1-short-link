@@ -242,7 +242,7 @@ $ads_info = $db->fetch_array($ads);
                     <div class="row search-box">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <input id="search-value" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
+                                <input id="search-field" class="form-control cz-shorten-input" name="searchlink" value="" placeholder="Nhập slug để tìm" type="text" data-validation-error-msg=" ">
                                 <span class="input-group-btn">
                                     <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="btnFind">Tìm</button>
                                 </span>
@@ -286,11 +286,16 @@ $ads_info = $db->fetch_array($ads);
         const LEO_KIT = {
             init: function() {
                 document.getElementById('btnFind').addEventListener('click', () => LEO_KIT.find());
+                document.getElementById('search-field').addEventListener("keyup", function(event) {
+                    if (event.key === "Enter") {
+                        LEO_KIT.find()
+                    }
+                });
                 oResultTable.hide();
                 oLblError.hide();
             },
             find: function() {
-                const search = $("#search-value").val();
+                const search = $("#search-field").val();
                 console.log("Search:", search);
                 const xhr = new XMLHttpRequest();
                 xhr.open('GET', './api-find.php?search=' + search, true);
@@ -328,7 +333,7 @@ $ads_info = $db->fetch_array($ads);
                     let dateCell = row.insertCell(2);
                     let statsCell = row.insertCell(3);
 
-                    urlCell.innerHTML = '<a href="' + jsonData[i].URL + '" target="_blank">' + jsonData[i].URL + '</a>';
+                    urlCell.innerHTML = '<a href="' + jsonData[i].URL + '" target="_blank">' + jsonData[i].URL.substring(0, 50) + '...</a>';
                     linkCell.innerHTML = '<a href="' + HOST + jsonData[i].link + '" target="_blank">' + jsonData[i].link + '</a>';
                     dateCell.textContent = jsonData[i].date;
 

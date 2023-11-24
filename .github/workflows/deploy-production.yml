@@ -1,0 +1,22 @@
+name: GO1 - Production Deploy
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Login & Execute Deploy Script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRD_HOST }}
+          username: ${{ secrets.PRD_USER }}
+          password: ${{ secrets.PRD_PWD }}
+          port: ${{ secrets.PRD_PORT }}
+          script: |
+            ssh -v -p ${{ secrets.PRD_PORT }} ${{ secrets.PRD_USER }}@${{ secrets.PRD_HOST }}
+            echo "Logged in via SSH successfully."
+            cd /home/go1.to/public_html
+            git pull
+            echo "Deploy successfully."
+            # Write logs
+            echo "Deploy Logs" >> ssh_log.txt
