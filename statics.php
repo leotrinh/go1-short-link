@@ -264,20 +264,6 @@ $ads_info = $db->fetch_array($ads);
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="record">
-                                        <td>
-                                            <a href="#" id="urlLink" target="_blank"></a>
-                                        </td>
-                                        <td>
-                                            <a href="#" id="link"></a>
-                                        </td>
-                                        <td id="date"></td>
-                                        <td>
-                                            <a href="#" id="statsLink" target="_blank">
-                                                <div class="fa fa-signal"></div>
-                                            </a>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
 
@@ -293,6 +279,7 @@ $ads_info = $db->fetch_array($ads);
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
     <script>
+        const HOST = "https://go1.day/";
         const API_FIND_ENDPOINT = `${window.location.href}/api-find.php?search=`;
         const oResultTable = $("#tblFindResult");
         const oLblError = $("#lblError");
@@ -321,24 +308,32 @@ $ads_info = $db->fetch_array($ads);
                 };
                 xhr.send();
             },
-            updateData: function(jsonData) {
+            updateData: function(resData) {
 
-                if (!jsonData.url) {
+                if (!resData.data) {
                     oLblError.show()
                     oResultTable.hide();
                     return;
                 }
+                const jsonData = resData.data;
                 oLblError.hide()
                 oResultTable.show();
-                document.getElementById("urlLink").href = jsonData.url;
-                document.getElementById("urlLink").textContent = jsonData.url;
+                const tableBody = document.querySelector("#tblFindResult tbody");
+                tableBody.innerHTML = '';
+                for (let i = 0; i < jsonData.length; i++) {
+                    let row = tableBody.insertRow();
 
-                document.getElementById("link").href = "https://go1.day/" + jsonData.link;
-                document.getElementById("link").textContent = jsonData.link;
+                    let urlCell = row.insertCell(0);
+                    let linkCell = row.insertCell(1);
+                    let dateCell = row.insertCell(2);
+                    let statsCell = row.insertCell(3);
 
-                document.getElementById("date").textContent = jsonData.date;
+                    urlCell.innerHTML = '<a href="' + jsonData[i].URL + '" target="_blank">' + jsonData[i].URL + '</a>';
+                    linkCell.innerHTML = '<a href="' + HOST + jsonData[i].link + '" target="_blank">' + jsonData[i].link + '</a>';
+                    dateCell.textContent = jsonData[i].date;
 
-                document.getElementById("statsLink").href = "https://go1.day/stats.php?id=" + jsonData.link;
+                    statsCell.innerHTML = '<a href="' + HOST + "stats.php?id=" + jsonData[i].link + '" target="_blank"><div class="fa fa-signal"></div></a>';
+                }
             }
         };
         LEO_KIT.init();

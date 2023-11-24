@@ -9,26 +9,19 @@ if (!isset($_GET['search'])) {
 }
 
 $searchValue = $db->escape_value($_GET['search']);
+$query = "SELECT URL, link, date, hits, id, pass FROM links WHERE link COLLATE UTF8_GENERAL_CI LIKE '%$searchValue%' OR `URL` COLLATE UTF8_GENERAL_CI LIKE '%$searchValue%'";
 
-$getLink = $db->query("SELECT URL, link, date, hits, id, pass FROM links WHERE link COLLATE UTF8_GENERAL_CI LIKE '%$searchValue%' OR URL COLLATE UTF8_GENERAL_CI LIKE '%$searchValue%'");
-$getLink = $db->fetch_array($getLink);
-$url = '';
-if ($getLink) {
-
-    $jsonData = [
-        'url' => $getLink["URL"],
-        'link' => $getLink["link"],
-        'date' => $getLink["date"],
-        'hits' => $getLink["hits"],
-        'id' => $getLink["id"],
-        'pass' => $getLink["pass"],
-    ];
-
-    echo json_encode($jsonData); // Convert the array to JSON format
+$result = $db->query($query);;
+$links = array(); 
+while ($r = mysqli_fetch_assoc($result)) {
+    $links[] = $r;
+}
+if (!empty($links)) {
+    echo json_encode(['data' => $links, 'msg' => "OK"]); 
     exit;
 }
 
 if (empty($jsonData)) {
-    echo "{}";
+    echo json_encode(['msg' => "No Data"]); 
     exit;
 }
