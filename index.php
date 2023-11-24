@@ -44,7 +44,7 @@ $_SESSION["allow"] = true;
             <div class="row" style='margin-top:20px'>
                 <div class="col-lg-12">
                     <div class="input-group">
-                        <input id="urlbox" class="form-control cz-shorten-input" name="longurl" value="" placeholder="Paste your link here" type="text" data-validation-error-msg=" ">
+                        <input id="urlbox" class="form-control cz-shorten-input" name="longurl" value="" placeholder="Bỏ link vào đây" type="text" data-validation-error-msg=" ">
                         <span class="input-group-btn">
                             <button class="btn btn-large btn-primary cz-shorten-btn" type="submit" id="submit">Shorten!</button>
                         </span>
@@ -55,13 +55,13 @@ $_SESSION["allow"] = true;
                 <div class="col-lg-6">
                     <div class="input-group" style="margin-top: 2px;">
                         <span class="input-group-addon"><?php echo $info['URL']; ?>/</span>
-                        <input type="text" id="cust" data-validation="alphanumeric" data-validation-allowing="-_" data-validation-optional="true" data-validation-error-msg=" " name="cust" class=" span5 form-control" placeholder="Custom Link (OPTIONAL)">
+                        <input type="text" id="cust" data-validation="alphanumeric" data-validation-allowing="-_" data-validation-optional="true" data-validation-error-msg=" " name="cust" class=" span5 form-control" placeholder="Rút gọn (tùy chọn)">
                     </div>
                 </div>
                 <div class="col-lg-6" style="margin-top: 2px;">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="text" data-validation="alphanumeric" data-validation-allowing="-_" data-validation-optional="true" data-validation-error-msg=" " id="pass" name="pass" class="form-control" placeholder="Password (OPTIONAL)">
+                        <input type="text" data-validation="alphanumeric" data-validation-allowing="-_" data-validation-optional="true" data-validation-error-msg=" " id="pass" name="pass" class="form-control" placeholder="Mật khẩu (tùy chọn)">
                     </div>
                 </div>
             </div>
