@@ -10,7 +10,7 @@ if (!isset($_GET['search'])) {
 
 $searchValue = $db->escape_value($_GET['search']);
 
-$getLink = $db->query("SELECT URL,link, date, hits, id, pass FROM links WHERE BINARY link LIKE '%$searchValue%' OR URL LIKE '%$searchValue%'");
+$getLink = $db->query("SELECT URL, link, date, hits, id, pass FROM links WHERE link COLLATE UTF8_GENERAL_CI LIKE '%$searchValue%' OR URL COLLATE UTF8_GENERAL_CI LIKE '%$searchValue%'");
 $getLink = $db->fetch_array($getLink);
 $url = '';
 if ($getLink) {
